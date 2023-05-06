@@ -1,0 +1,41 @@
+{
+    "type": "record",
+    "name": "StockHistory",
+    "namespace": "com.curso.avro.kafka.spkafkaavrodemo.schema",
+    "fields": [
+    {
+        "name": "studentId",
+        "type": "int",
+        "default": -1
+    },
+    {
+        "name": "registrationNumber",
+        "type": "int",
+        "default": -1
+    },
+    {
+        "name": "city",
+        "type": ["null","string"],
+        "default": null
+    },
+    {
+        "name": "name",
+        "type": ["null","string"],
+        "default": null
+    },
+    {
+        "name": "lastName",
+        "type": ["null","string"],
+        "default": null
+    },
+    {
+        "name": "tuitionCost",
+        "type": "float",
+        "default": -100.00
+    },
+    {
+        "name": "monthlyPayment",
+        "type": "float",
+        "default": -100.00
+    }]
+}
