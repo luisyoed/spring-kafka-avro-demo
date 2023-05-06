@@ -4,26 +4,40 @@ server:
 
 spring:
   kafka:
-    bootstrap-servers: "172.18.136.31:9092"
+    bootstrap-servers: pkc-ymrq7.us-east-2.aws.confluent.cloud:9092
+    properties:
+      schema:
+        registry:
+          url: https://psrc-mw731.us-east-2.aws.confluent.cloud
+      basic:
+        auth:
+          credentials:
+            source: USER_INFO
+          user:
+            info: EYIMQ22WGAB4LAKY:GVVbK/X+bJVBG1mJmr4actBSNW0frnAGt3/fwkR0ikddRAnG1ffmfWbwXTC3iY23
+      sasl:
+        jaas:
+          config: org.apache.kafka.common.security.plain.PlainLoginModule required username="SCI62JN3HTOJWELB" password="WH4Cd6BbPr4TCNZogc5quHO5SDHQRiRlNVhbUQEPj9DMD6IQSXbiKOWiMmmhwm8l";
+        mechanism: PLAIN
+      security:
+        protocol: SASL_SSL
+      ssl:
+        endpoint:
+          identification:
+            algorithm: https
     producer:
       keySerializer: "org.apache.kafka.common.serialization.StringSerializer"
       valueSerializer: "io.confluent.kafka.serializers.KafkaAvroSerializer"
-      properties:
-        schema:
-          registry:
-            url: "http://172.18.136.31:8081"
     consumer:
-      group-id: "group_registrer_new"
-      keyDeserializer: "org.apache.kafka.common.serialization.StringDeserializer"
-      valueDeserializer: "io.confluent.kafka.serializers.KafkaAvroDeserializer"
-      autoOffsetReset: "earliest"
+      autoOffsetReset: earliest
+      group-id: group_registrer_new
+      keyDeserializer: org.apache.kafka.common.serialization.StringDeserializer
       properties:
-        schema:
-          registry:
-            url: "http://172.18.136.31:8081"
         specific:
           avro:
-            reader: "true"       
+            reader: true
+      valueDeserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+
 avro:
   topic:
     name: "confluentKafkaCurso"
