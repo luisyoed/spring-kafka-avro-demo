@@ -29,7 +29,7 @@ static final Logger log = LoggerFactory.getLogger(SpAvroRestController.class);
 	
 	@PostMapping(value = "/publishMessage", consumes = MediaType.APPLICATION_JSON_VALUE,  produces =  MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> seandMessage(@RequestBody StockHistoryModel request){
-		log.info("inicia de servicio");
+		log.info("inicia de Producer");
 		StockHistory stockHistory= StockHistory.newBuilder().build();
 		stockHistory.setStudentId(new Random(1000).nextInt());
 		stockHistory.setRegistrationNumber(request.getRegistrationNumber());
@@ -39,7 +39,7 @@ static final Logger log = LoggerFactory.getLogger(SpAvroRestController.class);
 		stockHistory.setTuitionCost(request.getTuitionCost());
 		stockHistory.setMonthlyPayment(request.getMonthlyPayment());
 		spAvroProducer.send(stockHistory);
-		log.info("Fin de servicio");
+		
 		
 		return new ResponseEntity<>(request.getName() + " " + request.getLastName() + " publicado", HttpStatus.OK);
 		
